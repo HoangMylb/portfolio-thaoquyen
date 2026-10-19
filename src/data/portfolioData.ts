@@ -383,7 +383,7 @@ export const allProjects: VideoProject[] = [
       "Nhịp phim cảm xúc cao trào",
       "Âm thanh đồng bộ hòa âm"
     ],
-    "isFeatured": true
+    "isFeatured": false
   },
   {
     "id": "fashion-15-look-6",
@@ -687,7 +687,7 @@ export const allProjects: VideoProject[] = [
   },
   {
     "id": "events-30-10-follow-co-dau-chu-re",
-    "title": "10. follow cô dâu chú rể",
+    "title": "Phóng Sự Cưới & Khoảnh Khắc Nghệ Thuật (Follow Cô Dâu Chú Rể)",
     "client": "Wedding & Artist Event",
     "category": "events",
     "categoryName": "Nghệ Sĩ & Sự Kiện",
@@ -696,18 +696,18 @@ export const allProjects: VideoProject[] = [
     "duration": "36s",
     "videoUrl": "/videos/events-30-10-follow-co-dau-chu-re.mp4",
     "thumbnailUrl": "/thumbnails/events-30-10-follow-co-dau-chu-re.jpg",
-    "headline": "10. follow cô dâu chú rể",
-    "description": "Sản phẩm video thực tế được dựng và hoàn thiện bởi Thảo Quyên cho khách hàng Wedding & Artist Event.",
+    "headline": "Phóng Sự Cưới & Khoảnh Khắc Nghệ Thuật (Follow Cô Dâu Chú Rể)",
+    "description": "Ghi lại trọn vẹn những khoảnh khắc xúc động và thiêng liêng nhất trong ngày trọng đại. Tinh chỉnh màu sắc trong trẻo chuẩn điện ảnh, nhịp cắt giàu cảm xúc kết hợp hòa âm lắng đọng.",
     "highlights": [
-      "Chuẩn màu sắc",
-      "Nhịp cắt dứt khoát",
-      "Chất lượng cao"
+      "Màu phim trong trẻo chuẩn cảm xúc",
+      "Bắt trọn khoảnh khắc vàng tự nhiên",
+      "Định dạng dọc 9:16 tối ưu Reels/TikTok"
     ],
-    "isFeatured": false
+    "isFeatured": true
   },
   {
     "id": "events-31-4-follow-chu-re",
-    "title": "4. FOLLOW CHÚ RỂ",
+    "title": "Khoảnh Khắc Chuẩn Bị Của Chú Rể",
     "client": "Wedding & Artist Event",
     "category": "events",
     "categoryName": "Nghệ Sĩ & Sự Kiện",
@@ -716,12 +716,12 @@ export const allProjects: VideoProject[] = [
     "duration": "34s",
     "videoUrl": "/videos/events-31-4-follow-chu-re.mp4",
     "thumbnailUrl": "/thumbnails/events-31-4-follow-chu-re.jpg",
-    "headline": "4. FOLLOW CHÚ RỂ",
-    "description": "Sản phẩm video thực tế được dựng và hoàn thiện bởi Thảo Quyên cho khách hàng Wedding & Artist Event.",
+    "headline": "Khoảnh Khắc Chuẩn Bị Của Chú Rể",
+    "description": "Video ngắn ghi lại cảm xúc và phong thái lịch lãm của chú rể trước giờ đón dâu với nhịp cắt hiện đại và màu sắc sắc nét.",
     "highlights": [
-      "Chuẩn màu sắc",
+      "Màu sắc điện ảnh",
       "Nhịp cắt dứt khoát",
-      "Chất lượng cao"
+      "Chất lượng 9:16 sắc nét"
     ],
     "isFeatured": false
   },

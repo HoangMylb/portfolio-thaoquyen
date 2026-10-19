@@ -154,7 +154,7 @@ export default function ProjectsShowcase() {
           {/* 14 Videos Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
             {CATEGORIES.flatMap((cat) =>
-              allProjects.filter((p) => p.category === cat.id).slice(0, 2)
+              allProjects.filter((p) => p.category === cat.id && p.aspect === "9:16").slice(0, 2)
             ).map((project) => (
               <div
                 key={project.id}
