@@ -24,3 +24,7 @@ next-env.d.ts
 
 # Vercel
 .vercel
+
+# Raw video source folders (3.5GB)
+src/data/data1/
+src/data/data2/
