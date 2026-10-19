@@ -54,7 +54,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-lg md:text-xl text-[var(--ink)] max-w-xl font-normal leading-relaxed pt-2 animate-enter-2">
-              <span className="font-semibold text-[var(--accent)]">{personal.fullName}</span> — Freelance Video Editor & Visual Creator. Hơn 2 năm kinh nghiệm thực chiến dựng phim chuyên nghiệp cho các thương hiệu hàng đầu.
+              Hơn 2 năm kinh nghiệm thực chiến dựng phim chuyên nghiệp cho các thương hiệu hàng đầu.
             </p>
           </div>
 

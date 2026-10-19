@@ -35,8 +35,8 @@ export default function ProjectsShowcase() {
             </h2>
           </div>
 
-          <p className="text-base text-[var(--muted)] max-w-md">
-            100% video thực tế từ các chiến dịch thương hiệu, trích xuất khung hình gốc sắc nét.
+          <p className="text-base text-[var(--muted)] max-w-xl leading-relaxed">
+            Có kinh nghiệm freelance video editor 2 năm về các mảng thời trang, sức khỏe, làm đẹp, f&b, bất động sản,... và cộng tác với 1 số thương hiệu & cá nhân như Quỳnh Trần Daily, Dược sĩ Tống Đức, ca sĩ Akira Phan, mắt kính Anna Akiraphan, Chuỗi Coffee Four Season,...
           </p>
         </div>
 
