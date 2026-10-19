@@ -26,7 +26,7 @@ export const personal = {
   dateOfBirth: "22/12/2003",
   role: "Video Editor & Visual Creator",
   tagline: "Kể chuyện bằng hình ảnh và quy trình dựng phim sắc sảo.",
-  bio: "Hơn 2 năm kinh nghiệm thực chiến dựng phim chuyên nghiệp cho các thương hiệu hàng đầu.",
+  bio: "Hơn 2 năm kinh nghiệm thực chiến dựng phim chuyên nghiệp cho các thương hiệu.",
   yearsExp: 2,
   contact: {
     phone: "0943851121",

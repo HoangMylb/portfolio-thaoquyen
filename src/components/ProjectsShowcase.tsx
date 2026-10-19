@@ -36,7 +36,7 @@ export default function ProjectsShowcase() {
           </div>
 
           <p className="text-base text-[var(--muted)] max-w-xl leading-relaxed">
-            Có kinh nghiệm freelance video editor 2 năm về các mảng thời trang, sức khỏe, làm đẹp, f&b, bất động sản,... và cộng tác với 1 số thương hiệu & cá nhân như Quỳnh Trần Daily, Dược sĩ Tống Đức, ca sĩ Akira Phan, mắt kính Anna Akiraphan, Chuỗi Coffee Four Season,...
+            Có kinh nghiệm freelance video editor 2 năm về các mảng thời trang, sức khỏe, làm đẹp, f&b, bất động sản,... và cộng tác với 1 số thương hiệu & cá nhân như Quỳnh Trần Daily, Dược sĩ Tống Đức, ca sĩ Akira Phan, mắt kính Anna, Chuỗi Coffee Four Season,...
           </p>
         </div>
 
