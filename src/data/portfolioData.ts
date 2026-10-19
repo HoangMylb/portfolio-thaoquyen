@@ -26,7 +26,7 @@ export const personal = {
   dateOfBirth: "22/12/2003",
   role: "Video Editor & Visual Creator",
   tagline: "Kể chuyện bằng hình ảnh và quy trình dựng phim sắc sảo.",
-  bio: "Hơn 2 năm kinh nghiệm thực chiến dựng phim chuyên nghiệp cho các thương hiệu hàng đầu: Ecochic (chiến dịch Hồ Ngọc Hà, Quỳnh Trần), Dược Sĩ Tống Đức, Thẩm mỹ viện công nghệ cao, chuỗi F&B Four Season và các sự kiện lớn. Chuyên sâu về nhịp cắt giữ chân (retention pacing), dựng phim ngắn chuẩn TikTok/Reels và phim quảng bá điện ảnh.",
+  bio: "Hơn 2 năm kinh nghiệm thực chiến dựng phim chuyên nghiệp cho các thương hiệu hàng đầu.",
   yearsExp: 2,
   contact: {
     phone: "0943851121",
@@ -75,7 +75,7 @@ export const niches = [
 ] as const;
 
 export const stats = [
-  { value: "38+", label: "Dự án video hoàn thành", detail: "Đa dạng các lĩnh vực từ thời trang tới y khoa" },
+  { value: "999+", label: "Dự án video hoàn thành", detail: "Đa dạng các lĩnh vực từ thời trang tới y khoa" },
   { value: "02+", label: "Năm dựng phim tự do", detail: "Đồng hành trực tiếp cùng các thương hiệu lớn" },
   { value: "100%", label: "Chuẩn tỷ lệ 9:16 & 16:9", detail: "Tối ưu cho cả TikTok, Reels và màn ảnh rộng" },
   { value: "4.9/5", label: "Đánh giá từ đối tác", detail: "Cam kết đúng tiến độ và hỗ trợ chỉnh sửa tận tâm" },

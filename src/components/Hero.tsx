@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Image from "next/image";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { personal } from "@/data/portfolioData";
 
 export default function Hero() {
@@ -54,7 +54,7 @@ export default function Hero() {
             </h1>
 
             <p className="text-lg md:text-xl text-[var(--ink)] max-w-xl font-normal leading-relaxed pt-2 animate-enter-2">
-              <span className="font-semibold text-[var(--accent)]">{personal.fullName}</span> — Freelance Video Editor & Visual Creator. {personal.bio}
+              <span className="font-semibold text-[var(--accent)]">{personal.fullName}</span> — Freelance Video Editor & Visual Creator. Hơn 2 năm kinh nghiệm thực chiến dựng phim chuyên nghiệp cho các thương hiệu hàng đầu.
             </p>
           </div>
 
@@ -63,11 +63,6 @@ export default function Hero() {
             <a href="#projects" className="btn-solid">
               Khám Phá Tác Phẩm
               <ArrowDown size={18} />
-            </a>
-
-            <a href="#contact" className="btn-outline">
-              Nhận Tư Vấn Kịch Bản
-              <ArrowUpRight size={18} />
             </a>
           </div>
 
