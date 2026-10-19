@@ -2,30 +2,23 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight, Play, FolderOpen } from "lucide-react";
 import { allProjects, featuredProjects, type VideoProject } from "@/data/portfolioData";
 import { prefetchVideo } from "@/utils/videoCache";
 import VideoModal from "./VideoModal";
 
 const CATEGORIES = [
-  { id: "all", label: "Tất Cả", count: 38 },
-  { id: "fashion", label: "Thời Trang", count: 10 },
-  { id: "health", label: "Sức Khỏe", count: 4 },
-  { id: "beauty", label: "Làm Đẹp", count: 3 },
-  { id: "fnb", label: "Ẩm Thực", count: 4 },
-  { id: "realestate", label: "Bất Động Sản", count: 5 },
-  { id: "events", label: "Nghệ Sĩ & Cưới", count: 6 },
-  { id: "logistics", label: "Logistics", count: 6 },
+  { id: "fashion", label: "Thời Trang" },
+  { id: "health", label: "Sức Khỏe" },
+  { id: "beauty", label: "Làm Đẹp" },
+  { id: "fnb", label: "Ẩm Thực" },
+  { id: "realestate", label: "Bất Động Sản" },
+  { id: "events", label: "Nghệ Sĩ & Cưới" },
+  { id: "logistics", label: "Logistics" },
 ];
 
 export default function ProjectsShowcase() {
-  const [activeCategory, setActiveCategory] = useState("all");
   const [selectedVideo, setSelectedVideo] = useState<VideoProject | null>(null);
-
-  const filteredProjects =
-    activeCategory === "all"
-      ? allProjects
-      : allProjects.filter((p) => p.category === activeCategory);
 
   return (
     <section
@@ -145,47 +138,29 @@ export default function ProjectsShowcase() {
           </div>
         </div>
 
-        {/* Full Real Video Archive (Filterable Catalog of 38 Videos) */}
+        {/* Curated Showcase: 2 Videos per Category */}
         <div className="space-y-8 pt-4">
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <h3 className="text-2xl font-bold tracking-tight text-[var(--ink)]">
-                Kho Thư Viện Tác Phẩm Thực Tế
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-[var(--ink)]">
+                Tác Phẩm Tiêu Biểu Theo Từng Lĩnh Vực
               </h3>
               <p className="text-base text-[var(--muted)] pt-1">
-                Toàn bộ {allProjects.length} video đã hoàn thành qua các năm dựng phim tự do
+                Tuyển chọn 2 video tiêu biểu cho mỗi lĩnh vực chuyên môn (Thời Trang, Sức Khỏe, Làm Đẹp, F&B, BĐS, Nghệ Sĩ, Logistics)
               </p>
-            </div>
-
-            {/* Category Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-2">
-              {CATEGORIES.map((cat) => {
-                const isActive = activeCategory === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => setActiveCategory(cat.id)}
-                    className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors whitespace-nowrap cursor-pointer ${
-                      isActive
-                        ? "bg-[var(--accent)] text-[var(--accent-ink)]"
-                        : "bg-[var(--surface-card)] text-[var(--ink-secondary)] hover:bg-[var(--pink-pastel)] hover:text-[var(--pink-ink)]"
-                    }`}
-                  >
-                    {cat.label} ({cat.count})
-                  </button>
-                );
-              })}
             </div>
           </div>
 
-          {/* Catalog Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {filteredProjects.map((project) => (
+          {/* 14 Videos Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+            {CATEGORIES.flatMap((cat) =>
+              allProjects.filter((p) => p.category === cat.id).slice(0, 2)
+            ).map((project) => (
               <div
                 key={project.id}
                 onClick={() => setSelectedVideo(project)}
                 onMouseEnter={() => prefetchVideo(project.videoUrl)}
-                className="group cursor-pointer rounded-lg overflow-hidden bg-[var(--surface)] hover:bg-[var(--surface-card)] transition-colors duration-200 flex flex-col justify-between"
+                className="group cursor-pointer rounded-xl overflow-hidden bg-[var(--surface)] hover:bg-[var(--surface-card)] transition-colors duration-200 flex flex-col justify-between"
               >
                 {/* Thumbnail */}
                 <div
@@ -198,7 +173,7 @@ export default function ProjectsShowcase() {
                     alt={project.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 16vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 14vw"
                   />
 
                   {/* Play icon overlay */}
@@ -209,22 +184,27 @@ export default function ProjectsShowcase() {
                   </div>
 
                   {/* Duration badge */}
-                  <div className="absolute bottom-2 right-2 px-2.5 py-1 bg-[var(--surface)]/90 rounded text-sm font-semibold text-[var(--ink)]">
+                  <div className="absolute bottom-2 right-2 px-2 py-0.5 bg-[var(--surface)]/90 rounded text-xs font-semibold text-[var(--ink)]">
                     {project.duration}
+                  </div>
+
+                  {/* Category tag */}
+                  <div className="absolute top-2 left-2 px-2 py-0.5 bg-[var(--surface)]/90 rounded text-xs font-semibold text-[var(--accent)]">
+                    {project.categoryName}
                   </div>
                 </div>
 
                 {/* Meta details */}
-                <div className="p-3.5 space-y-1.5 min-w-0">
-                  <div className="text-sm font-semibold text-[var(--accent)] truncate">
+                <div className="p-3 space-y-1 min-w-0">
+                  <div className="text-xs font-bold text-[var(--accent)] truncate">
                     {project.client.replace(/ x .*/, "")}
                   </div>
-                  <div className="text-sm font-medium text-[var(--ink)] truncate">
+                  <div className="text-xs font-medium text-[var(--ink)] truncate">
                     {project.title}
                   </div>
-                  <div className="flex items-center justify-between text-sm text-[var(--muted)] pt-1">
-                    <span>{project.categoryName}</span>
+                  <div className="flex items-center justify-between text-xs text-[var(--muted)] pt-0.5">
                     <span>{project.aspect}</span>
+                    <span className="text-[var(--pink-ink)] font-semibold">Xem Video</span>
                   </div>
                 </div>
               </div>
@@ -232,20 +212,29 @@ export default function ProjectsShowcase() {
           </div>
         </div>
 
-        {/* Project Inquiries Banner */}
-        <div className="p-8 md:p-12 rounded-2xl bg-[var(--surface)] flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2">
-            <h4 className="text-2xl font-bold text-[var(--ink)]">
-              Bạn có dự án video cần sản xuất?
+        {/* Google Drive Full Archive CTA Banner */}
+        <div className="p-8 md:p-12 rounded-2xl bg-[var(--surface-card)] flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="space-y-3 max-w-2xl text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--pink-pastel)] text-[var(--pink-ink)] text-sm font-semibold">
+              <FolderOpen size={16} />
+              <span>Kho Video Gốc Dung Lượng Cao</span>
+            </div>
+            <h4 className="text-2xl md:text-3xl font-bold text-[var(--ink)]">
+              Khám Phá Toàn Bộ Hàng Trăm Video Đầy Đủ (4K & Full HD)
             </h4>
-            <p className="text-base text-[var(--muted)] max-w-xl">
-              Thảo Quyên nhận dựng phim lẻ từng dự án hoặc hợp đồng đồng hành dài hạn cùng thương hiệu.
+            <p className="text-base text-[var(--muted)] leading-relaxed">
+              Do giới hạn dung lượng tải của trang web, toàn bộ kho sản phẩm video hoàn chỉnh với số lượng phong phú và chất lượng gốc sắc nét nhất được lưu trữ trực tiếp tại Google Drive. Mời quý khách hàng và đối tác truy cập để trải nghiệm trọn vẹn toàn bộ các dự án.
             </p>
           </div>
 
-          <a href="#contact" className="btn-solid flex-shrink-0">
-            Trao Đổi Dự Án
-            <ArrowUpRight size={18} />
+          <a
+            href="https://drive.google.com/drive/folders/1hWIl5NPaJtCxKWni78beIPxgM2DuVfxK"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-solid text-center flex-shrink-0 text-base py-4 px-8 inline-flex items-center gap-3 whitespace-nowrap"
+          >
+            <span>Mở Kho Video Google Drive</span>
+            <ArrowUpRight size={20} />
           </a>
         </div>
       </div>
