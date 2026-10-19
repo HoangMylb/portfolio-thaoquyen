@@ -1,0 +1,260 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { ArrowUpRight, Play } from "lucide-react";
+import { allProjects, featuredProjects, type VideoProject } from "@/data/portfolioData";
+import { prefetchVideo } from "@/utils/videoCache";
+import VideoModal from "./VideoModal";
+
+const CATEGORIES = [
+  { id: "all", label: "Tất Cả", count: 38 },
+  { id: "fashion", label: "Thời Trang", count: 10 },
+  { id: "health", label: "Sức Khỏe", count: 4 },
+  { id: "beauty", label: "Làm Đẹp", count: 3 },
+  { id: "fnb", label: "Ẩm Thực", count: 4 },
+  { id: "realestate", label: "Bất Động Sản", count: 5 },
+  { id: "events", label: "Nghệ Sĩ & Cưới", count: 6 },
+  { id: "logistics", label: "Logistics", count: 6 },
+];
+
+export default function ProjectsShowcase() {
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [selectedVideo, setSelectedVideo] = useState<VideoProject | null>(null);
+
+  const filteredProjects =
+    activeCategory === "all"
+      ? allProjects
+      : allProjects.filter((p) => p.category === activeCategory);
+
+  return (
+    <section
+      id="projects"
+      className="py-20 md:py-28"
+      style={{ backgroundColor: "var(--bg)" }}
+    >
+      <div className="container-custom space-y-16">
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-2">
+          <div>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-[var(--ink)]">
+              Dự án video thực tế đã sản xuất.
+            </h2>
+          </div>
+
+          <p className="text-base text-[var(--muted)] max-w-md">
+            100% video thực tế từ các chiến dịch thương hiệu, trích xuất khung hình gốc sắc nét.
+          </p>
+        </div>
+
+        {/* Featured Showcase (6 Top Curated Campaigns) */}
+        <div className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h3 className="text-2xl font-bold tracking-tight text-[var(--ink)]">
+              Chiến Dịch Tiêu Biểu
+            </h3>
+            <span className="text-sm font-medium text-[var(--muted)]">
+              6 dự án trọng điểm
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {featuredProjects.map((project) => (
+              <article
+                key={project.id}
+                onClick={() => setSelectedVideo(project)}
+                onMouseEnter={() => prefetchVideo(project.videoUrl)}
+                className="editorial-card group cursor-pointer overflow-hidden flex flex-col justify-between bg-[var(--surface)] hover:bg-[var(--surface-card)] transition-colors duration-300"
+              >
+                {/* Real Video Thumbnail Container */}
+                <div className="relative aspect-[9/12] w-full overflow-hidden bg-[var(--surface-card)]">
+                  <Image
+                    src={project.thumbnailUrl}
+                    alt={`Khung hình video thực tế ${project.client}`}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+
+                  {/* Scrim overlay */}
+                  <div className="absolute inset-0 bg-black/15 group-hover:bg-black/5 transition-colors" />
+
+                  {/* Top Badges */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
+                    <span className="text-sm font-semibold px-3 py-1 bg-[var(--surface)] text-[var(--accent)] rounded-md">
+                      {project.categoryName}
+                    </span>
+                    <span className="text-sm font-medium px-2.5 py-1 bg-[var(--surface)] text-[var(--ink-secondary)] rounded-md">
+                      {project.duration}
+                    </span>
+                  </div>
+
+                  {/* Play Button Overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-14 h-14 rounded-full bg-[var(--accent)] text-[var(--accent-ink)] flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform">
+                      <Play size={24} fill="currentColor" className="ml-1" />
+                    </div>
+                  </div>
+
+                  {/* Bottom Aspect Badge */}
+                  <div className="absolute bottom-3 left-3 pointer-events-none">
+                    <span className="text-sm font-medium px-3 py-1 bg-[var(--surface)] text-[var(--muted)] rounded-md">
+                      {project.aspectLabel}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Card Content */}
+                <div className="p-6 flex flex-col justify-between flex-1 space-y-4 min-w-0">
+                  <div className="space-y-2 min-w-0">
+                    <div className="flex items-center justify-between gap-2 min-w-0">
+                      <h4 className="text-lg font-bold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors truncate">
+                        {project.client}
+                      </h4>
+                      <ArrowUpRight
+                        size={18}
+                        className="text-[var(--muted)] group-hover:text-[var(--accent)] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 flex-shrink-0"
+                      />
+                    </div>
+
+                    <p className="text-base font-semibold text-[var(--accent)] line-clamp-1">
+                      {project.headline}
+                    </p>
+
+                    <p className="text-base text-[var(--ink-secondary)] line-clamp-2 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Highlights */}
+                  {project.highlights && (
+                    <div className="pt-2 flex flex-wrap gap-2">
+                      {project.highlights.map((h) => (
+                        <span
+                          key={h}
+                          className="text-sm text-[var(--pink-ink)] bg-[var(--pink-pastel)] px-3 py-1 rounded-md font-medium"
+                        >
+                          {h}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        {/* Full Real Video Archive (Filterable Catalog of 38 Videos) */}
+        <div className="space-y-8 pt-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h3 className="text-2xl font-bold tracking-tight text-[var(--ink)]">
+                Kho Thư Viện Tác Phẩm Thực Tế
+              </h3>
+              <p className="text-base text-[var(--muted)] pt-1">
+                Toàn bộ {allProjects.length} video đã hoàn thành qua các năm dựng phim tự do
+              </p>
+            </div>
+
+            {/* Category Filter Tabs */}
+            <div className="flex flex-wrap items-center gap-2">
+              {CATEGORIES.map((cat) => {
+                const isActive = activeCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => setActiveCategory(cat.id)}
+                    className={`px-4 py-2 text-sm font-semibold rounded-md transition-colors whitespace-nowrap cursor-pointer ${
+                      isActive
+                        ? "bg-[var(--accent)] text-[var(--accent-ink)]"
+                        : "bg-[var(--surface-card)] text-[var(--ink-secondary)] hover:bg-[var(--pink-pastel)] hover:text-[var(--pink-ink)]"
+                    }`}
+                  >
+                    {cat.label} ({cat.count})
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Catalog Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {filteredProjects.map((project) => (
+              <div
+                key={project.id}
+                onClick={() => setSelectedVideo(project)}
+                onMouseEnter={() => prefetchVideo(project.videoUrl)}
+                className="group cursor-pointer rounded-lg overflow-hidden bg-[var(--surface)] hover:bg-[var(--surface-card)] transition-colors duration-200 flex flex-col justify-between"
+              >
+                {/* Thumbnail */}
+                <div
+                  className={`relative w-full ${
+                    project.aspect === "9:16" ? "aspect-[9/16]" : "aspect-[16/9]"
+                  } overflow-hidden bg-[var(--surface-card)]`}
+                >
+                  <Image
+                    src={project.thumbnailUrl}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 33vw, 16vw"
+                  />
+
+                  {/* Play icon overlay */}
+                  <div className="absolute inset-0 bg-black/25 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-[var(--accent)] text-[var(--accent-ink)] flex items-center justify-center">
+                      <Play size={18} fill="currentColor" className="ml-0.5" />
+                    </div>
+                  </div>
+
+                  {/* Duration badge */}
+                  <div className="absolute bottom-2 right-2 px-2.5 py-1 bg-[var(--surface)]/90 rounded text-sm font-semibold text-[var(--ink)]">
+                    {project.duration}
+                  </div>
+                </div>
+
+                {/* Meta details */}
+                <div className="p-3.5 space-y-1.5 min-w-0">
+                  <div className="text-sm font-semibold text-[var(--accent)] truncate">
+                    {project.client.replace(/ x .*/, "")}
+                  </div>
+                  <div className="text-sm font-medium text-[var(--ink)] truncate">
+                    {project.title}
+                  </div>
+                  <div className="flex items-center justify-between text-sm text-[var(--muted)] pt-1">
+                    <span>{project.categoryName}</span>
+                    <span>{project.aspect}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Project Inquiries Banner */}
+        <div className="p-8 md:p-12 rounded-2xl bg-[var(--surface)] flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="space-y-2">
+            <h4 className="text-2xl font-bold text-[var(--ink)]">
+              Bạn có dự án video cần sản xuất?
+            </h4>
+            <p className="text-base text-[var(--muted)] max-w-xl">
+              Thảo Quyên nhận dựng phim lẻ từng dự án hoặc hợp đồng đồng hành dài hạn cùng thương hiệu.
+            </p>
+          </div>
+
+          <a href="#contact" className="btn-solid flex-shrink-0">
+            Trao Đổi Dự Án
+            <ArrowUpRight size={18} />
+          </a>
+        </div>
+      </div>
+
+      {/* Video Modal Player */}
+      <VideoModal
+        project={selectedVideo}
+        onClose={() => setSelectedVideo(null)}
+      />
+    </section>
+  );
+}
