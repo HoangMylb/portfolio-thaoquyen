@@ -58,6 +58,30 @@ export default function Hero() {
             </p>
           </div>
 
+          <div className="space-y-5 text-sm sm:text-base text-[var(--ink)] animate-enter-3">
+            <div>
+              <h2 className="font-bold text-[var(--accent)]">Học vấn</h2>
+              <p>Cử nhân loại giỏi ngành Quan hệ Công chúng, Trường Đại học Văn Lang</p>
+            </div>
+            <div>
+              <h2 className="font-bold text-[var(--accent)]">Kinh nghiệm làm việc</h2>
+              <ul className="mt-2 space-y-3">
+                <li>
+                  <p className="font-semibold">Content Marketing · Công Ty TNHH Hoàng Hưng Long</p>
+                  <p className="text-[var(--ink-secondary)]">Đề xuất ý tưởng cho hoạt động truyền thông, mega live; quay và edit video cho kênh TikTok.</p>
+                </li>
+                <li>
+                  <p className="font-semibold">Content Marketing · Công ty TNHH STAR MARKETING</p>
+                  <p className="text-[var(--ink-secondary)]">Xây dựng content, sản xuất video cho các thương hiệu và thiết kế sản phẩm truyền thông.</p>
+                </li>
+                <li>
+                  <p className="font-semibold">Freelancer · 2 năm kinh nghiệm</p>
+                  <p className="text-[var(--ink-secondary)]">Hợp tác với Mắt kính Anna, Ecochic, Dược sĩ Tống Đức, thẩm mỹ viện Dencos Luxury, Good K - Edu, Akiraphan và hơn 999 sản phẩm khác.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center gap-4 pt-2 animate-enter-3">
             <a href="#projects" className="btn-solid">
