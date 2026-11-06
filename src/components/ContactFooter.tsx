@@ -1,6 +1,6 @@
 "use client";
 
-import { Phone, Mail, MessageCircle } from "lucide-react";
+import { Mail, MessageCircle } from "lucide-react";
 import { personal } from "@/data/portfolioData";
 
 export default function ContactFooter() {
@@ -34,14 +34,6 @@ export default function ContactFooter() {
             </a>
 
             <a
-              href={`tel:${personal.contact.phone}`}
-              className="btn-outline text-center w-full justify-between"
-            >
-              <span>Gọi Điện: {personal.contact.phone}</span>
-              <Phone size={18} />
-            </a>
-
-            <a
               href={`mailto:${personal.contact.email}`}
               className="btn-outline text-center w-full justify-between"
             >
@@ -67,7 +59,7 @@ export default function ContactFooter() {
 
           <div className="space-y-1">
             <span className="text-sm font-semibold text-[var(--accent)]">
-              Điện Thoại & Zalo
+              Số điện thoại Zalo
             </span>
             <p className="text-xl font-bold text-[var(--ink)]">
               {personal.contact.phone}
